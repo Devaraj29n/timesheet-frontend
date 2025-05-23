@@ -40,7 +40,7 @@ const AddTask = ({ onClose, onSubmit }) => {
     if (!crmLogId) return;
 
     axios
-      .get(`http://localhost:3030/api/projects/by-executive/${crmLogId}`)
+      .get(`https://timesheet-backend-production-fb8c.up.railway.app/api/projects/by-executive/${crmLogId}`)
       .then((response) => {
         setExecutiveProjects(response.data);
       })
@@ -50,7 +50,7 @@ const AddTask = ({ onClose, onSubmit }) => {
   }, [crmLogId]);
 
   useEffect(() => {
-    fetch('http://localhost:3030/api/projects')
+    fetch('https://timesheet-backend-production-fb8c.up.railway.app/api/projects')
       .then((res) => res.json())
       .then((data) => setProjectsList(data))
       .catch(() => showSnackbar('❌ Failed to load projects', 'error'));
@@ -84,7 +84,7 @@ const AddTask = ({ onClose, onSubmit }) => {
     }
 
     try {
-      const res = await fetch('http://localhost:3030/api/tasks', {
+      const res = await fetch('https://timesheet-backend-production-fb8c.up.railway.app/api/tasks', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(taskPayload()),
@@ -119,7 +119,7 @@ const AddTask = ({ onClose, onSubmit }) => {
     }
 
     try {
-      const res = await fetch('http://localhost:3030/api/tasks', {
+      const res = await fetch('https://timesheet-backend-production-fb8c.up.railway.app/api/tasks', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(taskPayload()),

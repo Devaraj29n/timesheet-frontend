@@ -61,7 +61,7 @@ const ActionView = ({ task = {}, onClose, onUpdateDone }) => {
     };
 
     try {
-      await axios.put(`http://localhost:3030/api/update-task/${task.task_id}`, payload);
+      await axios.put(`https://timesheet-backend-production-fb8c.up.railway.app/api/update-task/${task.task_id}`, payload);
       setSnackbar({ open: true, message: 'Task updated successfully', severity: 'success' });
       onUpdateDone();
     } catch (error) {
@@ -83,7 +83,7 @@ const ActionView = ({ task = {}, onClose, onUpdateDone }) => {
     };
 
     try {
-      await axios.put(`http://localhost:3030/api/subtasks/${task.sub_task_id}`, payload);
+      await axios.put(`https://timesheet-backend-production-fb8c.up.railway.app/api/subtasks/${task.sub_task_id}`, payload);
       setSnackbar({ open: true, message: 'Subtask updated successfully', severity: 'success' });
       onUpdateDone();
     } catch (error) {
@@ -118,7 +118,7 @@ const ActionView = ({ task = {}, onClose, onUpdateDone }) => {
     };
 
     try {
-      const res = await fetch('http://localhost:3030/api/subtasks', {
+      const res = await fetch('https://timesheet-backend-production-fb8c.up.railway.app/api/subtasks', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(subTaskData),

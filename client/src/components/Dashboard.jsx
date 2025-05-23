@@ -129,15 +129,15 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (!crmLogId) return;
-    axios.get(`http://localhost:3030/api/projects/by-executive/${crmLogId}`)
+    axios.get(`https://timesheet-backend-production-fb8c.up.railway.app/api/projects/by-executive/${crmLogId}`)
       .then(response => setExecutiveProjects(response.data))
       .catch(error => console.error('Error fetching projects for executive:', error));
   }, [crmLogId]);
 
   useEffect(() => {
     const url = project
-      ? `http://localhost:3030/api/project-admins?project=${project}`
-      : `http://localhost:3030/api/project-admins`;
+      ? `https://timesheet-backend-production-fb8c.up.railway.app/api/project-admins?project=${project}`
+      : `https://timesheet-backend-production-fb8c.up.railway.app/api/project-admins`;
 
     axios.get(url)
       .then(response => setAdmins(response.data))
@@ -145,25 +145,25 @@ const Dashboard = () => {
   }, [project]);
 
   // useEffect(() => {
-  //   axios.get('http://localhost:3030/api/admins')
+  //   axios.get('https://timesheet-backend-production-fb8c.up.railway.app/api/admins')
   //     .then(response => setAdmins(response.data))
   //     .catch(error => console.error('Error fetching admins:', error));
   // }, []);
 
   useEffect(() => {
-    axios.get('http://localhost:3030/api/tasks')
+    axios.get('https://timesheet-backend-production-fb8c.up.railway.app/api/tasks')
       .then(response => setEmployees(response.data))
       .catch(error => console.error('Error fetching task data:', error));
   }, []);
 
   useEffect(() => {
-    axios.get('http://localhost:3030/api/projects')
+    axios.get('https://timesheet-backend-production-fb8c.up.railway.app/api/projects')
       .then(response => setProjects(response.data))
       .catch(error => console.error('Error fetching projects:', error));
   }, []);
 
   const fetchSpentTimeDetails = () => {
-    axios.get('http://localhost:3030/api/spent-time-details')
+    axios.get('https://timesheet-backend-production-fb8c.up.railway.app/api/spent-time-details')
       .then(response => setSpentTimeDetails(response.data))
       .catch(error => {
         console.error('Error fetching spent-time-details:', error);
@@ -179,7 +179,7 @@ const Dashboard = () => {
     if (dateRange[0] && dateRange[1]) {
       const startDate = dateRange[0].toISOString().split('T')[0];
       const endDate = dateRange[1].toISOString().split('T')[0];
-      axios.get('http://localhost:3030/api/spent-time-details', {
+      axios.get('https://timesheet-backend-production-fb8c.up.railway.app/api/spent-time-details', {
         params: { startDate, endDate },
       }).then(response => setSpentTimeDetails(response.data))
         .catch(error => {

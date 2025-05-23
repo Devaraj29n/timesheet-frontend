@@ -63,7 +63,7 @@ const EditProject = ({ project, onClose, onUpdate }) => {
 useEffect(() => {
   const fetchAdmins = async () => {
     try {
-      const res = await fetch('http://localhost:3030/api/admins');
+      const res = await fetch('https://timesheet-backend-production-fb8c.up.railway.app/api/admins');
       const data = await res.json();
       
 
@@ -126,7 +126,7 @@ useEffect(() => {
     };
 
     try {
-      const res = await fetch(`http://localhost:3030/api/projects/${formData.project_unique_id}`, {
+      const res = await fetch(`https://timesheet-backend-production-fb8c.up.railway.app/api/projects/${formData.project_unique_id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedData),

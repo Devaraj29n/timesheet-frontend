@@ -32,7 +32,7 @@ const SpenttimeHeader = () => {
       try {
         const agentId = localStorage.getItem('agentId');
         if (agentId) {
-          const response = await axios.get(`http://localhost:3030/api/agents/${agentId}`);
+          const response = await axios.get(`https://timesheet-backend-production-fb8c.up.railway.app/api/agents/${agentId}`);
           const name = response.data.name;
           setAgentName(name);
           localStorage.setItem('name', name);

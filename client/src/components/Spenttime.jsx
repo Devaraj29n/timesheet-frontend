@@ -29,7 +29,7 @@ const SpentTime = () => {
       return;
     }
 
-    axios.get('http://localhost:3030/api/spent-time', {
+    axios.get('https://timesheet-backend-production-fb8c.up.railway.app/api/spent-time', {
       headers: {
         'Authorization': `Bearer ${crmLogId}`,
       },

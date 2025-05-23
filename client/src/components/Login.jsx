@@ -39,7 +39,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post('http://localhost:3030/login', {
+      const res = await axios.post('https://timesheet-backend-production-fb8c.up.railway.app/login', {
         agent_id: agentId.trim(),
         password: password.trim(),
       });

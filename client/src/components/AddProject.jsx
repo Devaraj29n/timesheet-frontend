@@ -115,7 +115,7 @@ const AddProject = ({ onClose, onSubmit }) => {
     const fetchAdmins = async () => {
       setLoadingAdmins(true);
       try {
-        const res = await fetch('http://localhost:3030/api/admins');
+        const res = await fetch('https://timesheet-backend-production-fb8c.up.railway.app/api/admins');
         const data = await res.json();
         setAdminOptions(data);
       } catch (err) {
@@ -127,7 +127,7 @@ const AddProject = ({ onClose, onSubmit }) => {
 
     const fetchProjectId = async () => {
       try {
-        const response = await fetch('http://localhost:3030/api/projects/new-id');
+        const response = await fetch('https://timesheet-backend-production-fb8c.up.railway.app/api/projects/new-id');
         const data = await response.json();
         setFormData(prev => ({ ...prev, projectId: data.project_unique_id }));
       } catch (error) {
@@ -182,7 +182,7 @@ const AddProject = ({ onClose, onSubmit }) => {
     };
 
     try {
-      const res = await fetch('http://localhost:3030/api/projects', {
+      const res = await fetch('https://timesheet-backend-production-fb8c.up.railway.app/api/projects', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(projectData),

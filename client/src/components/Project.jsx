@@ -33,7 +33,7 @@ const Project = () => {
 
   const fetchProjects = async () => {
     try {
-      const response = await axios.get('http://localhost:3030/api/projects');
+      const response = await axios.get('https://timesheet-backend-production-fb8c.up.railway.app/api/projects');
       setProjects(response.data);
     } catch (error) {
       console.error('Failed to fetch projects:', error);

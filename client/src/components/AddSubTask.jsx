@@ -49,7 +49,7 @@ const AddSubTask = ({ onClose, onSubmit, projectId, project, taskName, taskId })
 
 
     try {
-      const res = await fetch('http://localhost:3030/api/subtasks', {
+      const res = await fetch('https://timesheet-backend-production-fb8c.up.railway.app/api/subtasks', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
