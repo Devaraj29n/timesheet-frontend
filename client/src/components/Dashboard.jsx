@@ -29,6 +29,7 @@ import visibilityIcon from '../assets/visibility.png';
 import visibility2Icon from '../assets/visibility2.png';
 import AddSpenttime from './AddSpenttime';
 import View from './View';
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 
 const Dashboard = () => {
@@ -129,15 +130,15 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (!crmLogId) return;
-    axios.get(`https://timesheet-backend-production-fb8c.up.railway.app/api/projects/by-executive/${crmLogId}`)
+    axios.get(`${backendUrl}/api/projects/by-executive/${crmLogId}`)
       .then(response => setExecutiveProjects(response.data))
       .catch(error => console.error('Error fetching projects for executive:', error));
   }, [crmLogId]);
 
   useEffect(() => {
     const url = project
-      ? `https://timesheet-backend-production-fb8c.up.railway.app/api/project-admins?project=${project}`
-      : `https://timesheet-backend-production-fb8c.up.railway.app/api/project-admins`;
+      ? `${backendUrl}/api/project-admins?project=${project}`
+      : `${backendUrl}/api/project-admins`;
 
     axios.get(url)
       .then(response => setAdmins(response.data))
@@ -145,25 +146,25 @@ const Dashboard = () => {
   }, [project]);
 
   // useEffect(() => {
-  //   axios.get('https://timesheet-backend-production-fb8c.up.railway.app/api/admins')
+  //   axios.get('${backendUrl}/api/admins')
   //     .then(response => setAdmins(response.data))
   //     .catch(error => console.error('Error fetching admins:', error));
   // }, []);
 
   useEffect(() => {
-    axios.get('https://timesheet-backend-production-fb8c.up.railway.app/api/tasks')
+    axios.get(`${backendUrl}/api/tasks`)
       .then(response => setEmployees(response.data))
       .catch(error => console.error('Error fetching task data:', error));
   }, []);
 
   useEffect(() => {
-    axios.get('https://timesheet-backend-production-fb8c.up.railway.app/api/projects')
+    axios.get(`${backendUrl}/api/projects`)
       .then(response => setProjects(response.data))
       .catch(error => console.error('Error fetching projects:', error));
   }, []);
 
   const fetchSpentTimeDetails = () => {
-    axios.get('https://timesheet-backend-production-fb8c.up.railway.app/api/spent-time-details')
+    axios.get(`${backendUrl}/api/spent-time-details`)
       .then(response => setSpentTimeDetails(response.data))
       .catch(error => {
         console.error('Error fetching spent-time-details:', error);
@@ -179,7 +180,7 @@ const Dashboard = () => {
     if (dateRange[0] && dateRange[1]) {
       const startDate = dateRange[0].toISOString().split('T')[0];
       const endDate = dateRange[1].toISOString().split('T')[0];
-      axios.get('https://timesheet-backend-production-fb8c.up.railway.app/api/spent-time-details', {
+      axios.get(`${backendUrl}/api/spent-time-details`, {
         params: { startDate, endDate },
       }).then(response => setSpentTimeDetails(response.data))
         .catch(error => {

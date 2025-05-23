@@ -13,6 +13,7 @@ import {
   Alert
 } from '@mui/material';
 import React, { useState } from 'react';
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const AddSubTask = ({ onClose, onSubmit, projectId, project, taskName, taskId }) => {
   const [description, setDescription] = useState('');
@@ -49,7 +50,7 @@ const AddSubTask = ({ onClose, onSubmit, projectId, project, taskName, taskId })
 
 
     try {
-      const res = await fetch('https://timesheet-backend-production-fb8c.up.railway.app/api/subtasks', {
+      const res = await fetch(`${backendUrl}/api/subtasks`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

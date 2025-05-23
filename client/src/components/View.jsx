@@ -11,6 +11,8 @@ import {
   Typography,
   Grid
 } from '@mui/material';
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 
 const View = ({ show, onClose, projectId, taskId, employee }) => {
   const [formData, setFormData] = useState({
@@ -39,7 +41,7 @@ const View = ({ show, onClose, projectId, taskId, employee }) => {
 
     const fetchSpentTimeDetails = async () => {
       try {
-        const response = await axios.get('https://timesheet-backend-production-fb8c.up.railway.app/api/spenttime/details', {
+        const response = await axios.get(`${backendUrl}/api/spenttime/details`, {
           params: { project_id: projectId, task_id: taskId },
         });
 

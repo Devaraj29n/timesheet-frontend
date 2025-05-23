@@ -12,6 +12,7 @@ import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 import addIcon from '../assets/add.png';
 import AddSpenttime from './AddSpenttime';
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const SpentTime = () => {
   // Set default date to today's date
@@ -29,7 +30,7 @@ const SpentTime = () => {
       return;
     }
 
-    axios.get('https://timesheet-backend-production-fb8c.up.railway.app/api/spent-time', {
+    axios.get(`${backendUrl}/api/spent-time`, {
       headers: {
         'Authorization': `Bearer ${crmLogId}`,
       },

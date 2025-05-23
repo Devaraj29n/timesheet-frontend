@@ -21,6 +21,7 @@ import EditProject from './EditProject';
 
 import addIcon from '../assets/add.png';
 import editIcon from '../assets/edit.png';
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const Project = () => {
   const [showModal, setShowModal] = useState(false);
@@ -33,7 +34,7 @@ const Project = () => {
 
   const fetchProjects = async () => {
     try {
-      const response = await axios.get('https://timesheet-backend-production-fb8c.up.railway.app/api/projects');
+      const response = await axios.get(`${backendUrl}/api/projects`);
       setProjects(response.data);
     } catch (error) {
       console.error('Failed to fetch projects:', error);

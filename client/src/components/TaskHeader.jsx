@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 // Assets
 import arrowIcon from '../assets/arrow.png';
@@ -32,7 +33,7 @@ const TaskHeader = () => {
       try {
         const agentId = localStorage.getItem('agentId');
         if (agentId) {
-          const response = await axios.get(`https://timesheet-backend-production-fb8c.up.railway.app/api/agents/${agentId}`);
+          const response = await axios.get(`${backendUrl}/api/agents/${agentId}`);
           const name = response.data.name;
           setAgentName(name);
           localStorage.setItem('name', name);

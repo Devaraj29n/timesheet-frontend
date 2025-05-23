@@ -5,7 +5,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import backgroundImg from "../assets/bgimg.png";
 import timeIcon from "../assets/time.png";
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
+console.log(backendUrl);
 // Custom styled TextField with MUI styles
 const StyledTextField = styled(TextField)({
   '& label.Mui-focused': {
@@ -39,7 +41,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post('https://timesheet-backend-production-fb8c.up.railway.app/login', {
+      const res = await axios.post(`${backendUrl}/login`, {
         agent_id: agentId.trim(),
         password: password.trim(),
       });

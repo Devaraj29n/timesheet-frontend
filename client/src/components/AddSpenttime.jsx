@@ -15,6 +15,8 @@ import { LocalizationProvider, TimePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 
 const AddSpenttime = ({ open, onClose, onSaved }) => {
   const [subTasks, setSubTasks] = useState([]);
@@ -36,7 +38,7 @@ const AddSpenttime = ({ open, onClose, onSaved }) => {
   useEffect(() => {
     if (!crmLogId) return;
     axios
-      .get(`https://timesheet-backend-production-fb8c.up.railway.app/api/projects/by-executive/${crmLogId}`)
+      .get(`${backendUrl}/api/projects/by-executive/${crmLogId}`)
       .then((response) => {
         setExecutiveProjects(response.data);
       })
@@ -56,7 +58,7 @@ const AddSpenttime = ({ open, onClose, onSaved }) => {
     if (!projectId) return;
 
     try {
-      const taskResponse = await axios.get(`https://timesheet-backend-production-fb8c.up.railway.app/api/tasks?project_id=${projectId}`);
+      const taskResponse = await axios.get(`${backendUrl}/api/tasks?project_id=${projectId}`);
       setTasksList(taskResponse.data);
     } catch (error) {
       console.error('Error fetching tasks:', error);
@@ -72,7 +74,7 @@ const AddSpenttime = ({ open, onClose, onSaved }) => {
     if (!taskId || !selectedProjectId) return;
 
     try {
-      const response = await axios.get('https://timesheet-backend-production-fb8c.up.railway.app/api/subtasks', {
+      const response = await axios.get(`${backendUrl}/api/subtasks`, {
         params: { task_id: taskId, project_id: selectedProjectId }
       });
       setSubTasks(response.data || []);
@@ -145,7 +147,7 @@ const AddSpenttime = ({ open, onClose, onSaved }) => {
 
     if (!selectedSubTask && extraSubTaskName.trim()) {
       try {
-        const subtaskRes = await axios.post('https://timesheet-backend-production-fb8c.up.railway.app/subtasks', {
+        const subtaskRes = await axios.post(`${backendUrl}/subtasks`, {
           subtask_name: extraSubTaskName,
           task_id: selectedTaskId,
           project_id: selectedProjectId,
@@ -165,7 +167,7 @@ const AddSpenttime = ({ open, onClose, onSaved }) => {
 
     console.log(payload);
     try {
-      await axios.post('https://timesheet-backend-production-fb8c.up.railway.app/api/spenttime', payload);
+      await axios.post(`${backendUrl}/api/spenttime`, payload);
       setSnackbar({ open: true, message: 'Time saved successfully!', severity: 'success' });
       onSaved();
       

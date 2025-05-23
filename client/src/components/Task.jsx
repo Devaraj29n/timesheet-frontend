@@ -17,6 +17,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import addIcon from '../assets/add.png';
 import ActionView from './ActionView';
 import AddTask from './AddTask';
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const Task = () => {
    const [showPopup, setShowPopup] = useState(false);
@@ -29,7 +30,7 @@ const Task = () => {
     
 
     try {
-      const response = await axios.get('https://timesheet-backend-production-fb8c.up.railway.app/api/tasks');
+      const response = await axios.get(`${backendUrl}/api/tasks`);
       if (Array.isArray(response.data)) {
         setTasks(response.data);
       } else {
